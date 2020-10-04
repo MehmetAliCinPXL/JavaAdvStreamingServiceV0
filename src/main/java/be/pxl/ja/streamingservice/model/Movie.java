@@ -52,19 +52,24 @@ public class Movie extends Content implements Playable {
         int hours = duration / 60;
         int minutes = duration % 60;
         StringBuilder result = new StringBuilder();
-        if (hours > 0){
-            result.append(hours).append(" u ");
+        StringBuilder check = new StringBuilder("");
+        if (hours > 0) {
+            result.append(hours).append(" h ");
         }
-        if (minutes > 0){
+        if (minutes > 0) {
             result.append(minutes).append(" min ");
         }
+        if(result.toString().equals("")){
+            result.append("?");
+        }
+
         return result.toString().trim();
         // return "2 u 30 min;"
     }
 
     public void setDuration(int duration) {
         this.duration = Math.abs(duration);
-        // waarom abs ??
+        // abs omdat we geen negatieve waarden willen
     }
 
     public Genre getGenre() {
@@ -85,17 +90,32 @@ public class Movie extends Content implements Playable {
         return this.getTitle() + jaar;
     }
 
-//    public static void main(String[] args) {
-//        Movie Frozen = new Movie("Frozen", Rating.LITTLE_KIDS);
-//        Movie HarryPotter = new Movie("Harry Potter", Rating.TEENS);
-//        HarryPotter.setDuration(10);
-//        Frozen.director = "John Smith";
-//        Frozen.setReleaseDate(LocalDate.of(1997, 12, 31));
-//        System.out.println(Frozen.toString());
-//        System.out.println(HarryPotter.toString());
-//        System.out.println(HarryPotter.getDuration());
-//
-//   }
+    /* @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder(super.toString());
+        if (releaseDate != null) {
+            builder.append(" (").append(releaseDate.getYear()).
+                    append(")");
+        }
+        return builder.toString();
+    }*/
+
+
+    public static void main(String[] args) {
+        Movie Frozen = new Movie("Frozen", Rating.LITTLE_KIDS);
+        Movie HarryPotter = new Movie("Harry Potter", Rating.TEENS);
+        HarryPotter.setDuration(10);
+        Frozen.director = "John Smith";
+        Frozen.setReleaseDate(LocalDate.of(1997, 12, 31));
+        System.out.println(Frozen.toString());
+        System.out.println(HarryPotter.toString());
+        System.out.println(HarryPotter.getDuration());
+        String dit = HarryPotter.toString();
+
+
+    }
+
+
 }
 
 
