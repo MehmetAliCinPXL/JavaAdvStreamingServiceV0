@@ -17,7 +17,7 @@ public enum Rating {
         this(displayName, 0);
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public int getMinimumAge(){
+        return this.age;
     }
 }
